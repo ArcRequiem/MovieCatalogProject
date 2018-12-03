@@ -1,5 +1,8 @@
 {% extends "movies/base.html" %}
 {% load widget_tweaks %}
+{% block title %}
+    <title>MVCTLG Editing: {{ movie }}</title>
+{% endblock title %}
 {% block header %}
     {% include "movies/header.html" %}
 {% endblock header %}

@@ -1,8 +1,13 @@
-
 {% extends "movies/base.html" %}
+
+{% block title %}
+    <title>MVCTLG Series Search</title>
+{% endblock title %}
+
 {% block header %}
 {% include "movies/header.html" %}
 {% endblock header %}
+
 {% block content %}
 <h1>Search results for <strong>"{{keyword}}"</strong></h1>
 {% if search_list %}
