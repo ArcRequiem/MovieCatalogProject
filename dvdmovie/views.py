@@ -201,7 +201,7 @@ def person_search(request):
     elif request.GET.get('cs') == 'series':
         return series_search(request)
     keyword = request.GET.get('q')
-    search_list=Person.objects.filter(surname__icontains = keyword) | Person.objects.filter(givenname__icontains = keyword) | Person.objects.filter(suffix__icontains = keyword) | Person.objects.filter(surname__icontains = keyword)
+    search_list = Person.objects.filter(surname__icontains = keyword) | Person.objects.filter(givenname__icontains = keyword) | Person.objects.filter(suffix__icontains = keyword) | Person.objects.filter(nameknownby__icontains = keyword)| Person.objects.filter(givenname__icontains = keyword)| Person.objects.filter(prefix__icontains = keyword)  | Person.objects.filter(suffix__icontains = keyword) | Person.objects.filter(nameknownby__icontains = keyword)
     context = {
         'keyword': keyword,
         'search_list': search_list
