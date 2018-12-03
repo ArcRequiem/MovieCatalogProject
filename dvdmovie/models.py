@@ -48,13 +48,13 @@ class Movie(models.Model):
         Person,
         through='Star',
         related_name="star",
-        blank=True}
+        blank=True
     )
     directors = models.ManyToManyField(
         Person,
         related_name = "director",
         blank=True,
-        limit_choices_to={'is_director':True}
+        limit_choices_to={'is_director':True},
     )
 
     class Meta:
