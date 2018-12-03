@@ -72,9 +72,9 @@
             {% if movie.role %}
                 <li>
                     <a href="{% url 'movies:movie_detail' movie.movie.id %}">
-                        {{ movie.movie }}
+                        <strong>{{ movie.movie }}</strong>
                     </a>
-                    as {{ movie.role }}
+                    as <strong>{{ movie.role }}</strong>
                 </li>
             {% else %}
                 <li> 
