@@ -8,36 +8,36 @@
 <h1>Series:</h1>
 <div class="container">
     <h2>{{ series.name }}<a class="btn btn-sm btn-primary" href="{% url 'movies:series_edit' series.id %}">Edit</a></h2>
-    {% if movies %}
     <h3> Movies: </h3>
-        <ul>
-        {% for movie in movies %}
-            {% if movie.number %}
-                <li>({{movie.number}})
-                    <a href="{% url 'movies:movie_detail' movie.movie.id %}">
-                        {{ movie.movie }}
-                    </a>
-                    <a class="btn btn-sm btn-outline-danger" href="{% url 'movies:movie_detail' movie.movie.id %}">
-                        del
-                    </a>
-                </li>
-            {% else %}
-                <li> 
-                    <a href="{% url 'movies:movie_detail' movie.movie.id %}">
-                        {{ movie.movie }}
-                    </a>
-                    <a class="btn btn-sm btn-outline-danger" href="{% url 'movies:series_delete_movie' series_id=series.id movie_id=movie.movie.id %}">
-                        del
-                    </a>
-                </li>
-            {% endif %}
-        {% endfor %}
-        <li>
-            <a href="{% url 'movies:series_add_movie' series.id%}">
-                Add New Movie
-            </a>
-        </li>
-        </ul>
+    <ul>
+    {% if movies %}
+    {% for movie in movies %}
+        {% if movie.number %}
+            <li>({{movie.number}})
+                <a href="{% url 'movies:movie_detail' movie.movie.id %}">
+                    {{ movie.movie }}
+                </a>
+                <a class="btn btn-sm btn-outline-danger" href="{% url 'movies:movie_detail' movie.movie.id %}">
+                    del
+                </a>
+            </li>
+        {% else %}
+            <li> 
+                <a href="{% url 'movies:movie_detail' movie.movie.id %}">
+                    {{ movie.movie }}
+                </a>
+                <a class="btn btn-sm btn-outline-danger" href="{% url 'movies:series_delete_movie' series_id=series.id movie_id=movie.movie.id %}">
+                    del
+                </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+    <li>
+        <a href="{% url 'movies:series_add_movie' series.id%}">
+            Add New Movie
+        </a>
+    </li>
     {% endif %}
+    </ul>
 </div>
 {% endblock content %}
