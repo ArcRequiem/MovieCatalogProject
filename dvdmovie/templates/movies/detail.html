@@ -40,7 +40,7 @@
     {% for star in movie.star_set.all %}
         {% if star.role %}
             <li>
-                <a href="{% url 'movies:person_detail' star.id %}">
+                <a href="{% url 'movies:person_detail' star.actor.id %}">
                 <strong>{{ star.actor }}</strong></a> as <strong>{{star.role}}</strong>
                 <a
                 class="btn btn-sm btn-outline-danger"
