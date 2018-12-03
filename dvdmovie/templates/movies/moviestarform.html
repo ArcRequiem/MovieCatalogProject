@@ -1,0 +1,11 @@
+{% extends "movies/base.html" %}
+{% block header %}
+{% include "movies/header.html" %}
+{% endblock header %}
+{% block content %}
+<h1>Adding Star to "{{movie.title}}":</h1>
+<form method="POST" action="">
+    {% include "movies/form.html" %}
+    <button type="submit" name="save-btn" class="btn btn-primary">Save</button>
+</form>
+{% endblock content %}

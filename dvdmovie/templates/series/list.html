@@ -1,0 +1,39 @@
+{% extends "movies/base.html" %}
+{% block header %}
+{% include "movies/header.html" %}
+{% endblock header %}
+{% block content %}
+<h1>Series Catalog<a class="btn btn-primary" href="{% url 'movies:series_add'%}">Add</a></h1>
+{% if series_list %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Series</th>
+                <th scope="col">Movies</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for series in series_list %}
+            <tr>
+                <th scope="row">
+                    <a href="{% url 'movies:series_detail' series.id %}">
+                        {{ series }}
+                    </a>
+                </th>
+                <td>
+                {% if series.partofseries_set.all %}
+                    <ul>
+                    {% for belongtoseries in series.partofseries_set.all %}
+                        <li>{{ belongtoseries.movie }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No series are available.</p>
+{% endif %}
+{% endblock %}

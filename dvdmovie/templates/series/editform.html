@@ -1,0 +1,14 @@
+{% extends "movies/base.html" %}
+{% load widget_tweaks %}
+{% block header %}
+    {% include "movies/header.html" %}
+{% endblock header %}
+
+{% block content %}
+<h1>Editing: {{series.name}}</h1>
+<form method="POST" action="">
+    {% include "movies/form.html" %}
+    <button type="submit" name="save-btn" class="btn btn-primary">Save</button>
+    <button type="delete" name="delete-btn" class="btn btn-danger">Delete</button>
+</form>
+{% endblock content %}

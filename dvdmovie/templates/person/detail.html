@@ -1,0 +1,85 @@
+{% extends "movies/base.html" %}
+
+{% block header %}
+    {% include "movies/header.html" %}
+{% endblock header %}
+
+{% block content %}
+<h1>Person:</h1>
+<div class="container">
+    <h2>{{ person }}<a class="btn btn-sm btn-primary" href="{% url 'movies:person_edit' person.id %}">Edit</a></h2>
+    <h3> Name Breakdown </h3>
+    <table>
+        <tbody>
+            {% if person.prefix %}
+            <tr>
+                <th scope="row">
+                    Prefix:
+                </th>
+                <td>
+                    {{ person.prefix }}
+                </td>
+            </tr>
+            {% endif %}
+            <tr>
+                <th scope="row">
+                    Given Name:
+                </th>
+                <td>
+                    {{ person.givenname }}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Surname:
+                </th>
+                <td>
+                    {{ person.surname }}
+                </td>
+            </tr>
+            {% if person.suffix %}
+            <tr>
+                <th scope="row">
+                    Suffix:
+                </th>
+                <td>
+                    {{ person.suffix }}
+                </td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    {% if person.is_director and person.director.all %}
+    <h3> Movies Directed: </h3>
+        <ul>
+        {% for movie in person.director.all %}
+            <li> 
+                <a href="{% url 'movies:movie_detail' movie.id %}">
+                    {{ movie }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% if movies and person.is_star %}
+    <h3> Movies Starred in: </h3>
+        <ul>
+        {% for movie in movies %}
+            {% if movie.role %}
+                <li>{{movie.role}} as 
+                    <a href="{% url 'movies:movie_detail' movie.movie.id %}">
+                        {{ movie.movie }}
+                    </a>
+                </li>
+            {% else %}
+                <li> 
+                    <a href="{% url 'movies:movie_detail' movie.movie.id %}">
+                        {{ movie.movie }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock content %}

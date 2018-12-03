@@ -1,0 +1,43 @@
+{% extends "movies/base.html" %}
+{% block header %}
+{% include "movies/header.html" %}
+{% endblock header %}
+{% block content %}
+<div class="container">
+    <h1>Search results for <strong>"{{keyword}}"</strong></h1>
+</div>
+{% if search_list %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Movie</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Series</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movie in search_list %}
+            <tr>
+                <th scope="row">
+                    <a href="{% url 'movies:movie_detail' movie.id %}">
+                        {{ movie.title }}
+                    </a>
+                </th>
+                <td>{{movie.releasedate}}</td>
+                <td>
+                {% if movie.series.all %}
+                    <ul>
+                    {% for series in movie.series.all %}
+                        <li>{{ series }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No movie matches search keyword.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,40 @@
+
+{% extends "movies/base.html" %}
+{% block header %}
+{% include "movies/header.html" %}
+{% endblock header %}
+{% block content %}
+<h1>Search results for <strong>"{{keyword}}"</strong></h1>
+{% if search_list %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Series</th>
+                <th scope="col">Movie</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for series in search_list %}
+            <tr>
+                <th scope="row">
+                    <a href="{% url 'movies:series_detail' series.id %}">
+                        {{ series.name }}
+                    </a>
+                </th>
+                <td>
+                {% if series.movies.all %}
+                    <ul>
+                    {% for movie in series.movies.all %}
+                        <li>{{ movie }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No series matches search keyword.</p>
+{% endif %}
+{% endblock %}

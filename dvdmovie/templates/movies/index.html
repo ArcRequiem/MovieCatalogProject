@@ -1,0 +1,19 @@
+{% extends "movies/base.html" %}
+{% block header %}
+{% include "movies/header.html" %}
+{% endblock header %}
+{% block content %}
+<h1>Movie Catalog</h1>
+{% if latest_movie_list %}
+<div class="container">
+    <h3>Latest Movies Added</h3>
+    <ul>
+    {% for movie in latest_movie_list %}
+        <li><a href="{% url 'movies:movie_detail' movie.id %}">{{ movie.title }}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% else %}
+    <p>No movies are available.</p>
+{% endif %}
+{% endblock %}

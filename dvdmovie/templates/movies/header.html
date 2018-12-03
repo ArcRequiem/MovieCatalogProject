@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'movies:movie_index' %}">Movie Catalog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'movies:movie_list' %}">Movies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'movies:series_list' %}">Series</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'movies:person_list' %}">People</a>
+            </li>
+        </ul>
+    </div>
+    <form class="form-inline" id="searchform" action="{% url 'movies:movie_search' %}" method="get" accept-charset="utf-8">
+        <select name="cs" class="form-control">
+            <option value="movie">Movie</option>
+            <option value="series">Series</option>
+            <option value="person">Person</option>
+        </select>
+        <input class="form-control mr-sm-2 searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0 searchbutton" type="submit">
+            Search
+        </button>
+    </form>
+</nav>
+<span class="border"></span>

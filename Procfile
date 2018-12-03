@@ -1,0 +1,1 @@
+web: gunicorn djangoDVD.wsgi --log-file -
