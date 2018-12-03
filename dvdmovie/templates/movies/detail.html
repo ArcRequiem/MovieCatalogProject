@@ -47,12 +47,12 @@
             <li><strong>{{ star.actor }}</strong></li>
         {% endif %}
     {% endfor %}
+    {% endif %}
         <li>
             <a href="{% url 'movies:movie_add_actor' movie.id %}">
                 Add New Starring Role
             </a>
         </li>
-    {% endif %}
     </ul>
 </div>
 {% endblock content %}
