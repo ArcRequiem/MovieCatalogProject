@@ -44,8 +44,19 @@ class Movie(models.Model):
     title = models.CharField(max_length=128)
     releasedate = models.DateField("Release Date")
     genres = models.ManyToManyField(Genre,blank=True)
-    stars = models.ManyToManyField(Person, through='Star', related_name="star", blank=True)
-    directors = models.ManyToManyField(Person, related_name = "director", blank=True)
+    stars = models.ManyToManyField(
+        Person,
+        through='Star',
+        related_name="star",
+        blank=True,
+        limit_choices_to={'is_star':True}
+    )
+    directors = models.ManyToManyField(
+        Person,
+        related_name = "director",
+        blank=True
+        limit_choices_to={'is_director':True}
+    )
 
     class Meta:
         ordering = ('title','releasedate')
