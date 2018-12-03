@@ -30,7 +30,7 @@
     <h3> Director: </h3>
         <ul>
         {% for director in movie.directors.all %}
-            <li>{{ director }}</li>
+            <li><a href="{% url 'movies:perso_detail' director.id %}">{{ director }}</a></li>
         {% endfor %}
         </ul>
     {% endif %}
