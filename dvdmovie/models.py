@@ -54,7 +54,7 @@ class Movie(models.Model):
     directors = models.ManyToManyField(
         Person,
         related_name = "director",
-        blank=True
+        blank=True,
         limit_choices_to={'is_director':True}
     )
 
