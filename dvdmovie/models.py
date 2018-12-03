@@ -48,8 +48,7 @@ class Movie(models.Model):
         Person,
         through='Star',
         related_name="star",
-        blank=True,
-        limit_choices_to={'is_star':True}
+        blank=True}
     )
     directors = models.ManyToManyField(
         Person,
@@ -65,7 +64,12 @@ class Movie(models.Model):
         return self.title
 
 class Star(models.Model):
-    actor = models.ForeignKey(Person, on_delete=models.CASCADE, related_name ="acting_in")
+    actor = models.ForeignKey(
+        Person,
+        on_delete=models.CASCADE,
+        related_name ="acting_in",
+        limit_choices_to={"is_star":True}
+    )
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     role = models.CharField(max_length=128)
 
