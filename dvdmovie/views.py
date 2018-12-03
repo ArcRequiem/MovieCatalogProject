@@ -163,7 +163,7 @@ def person(request):
 
 def person_detail(request, person_id=None):
     person = get_object_or_404(Person, pk=person_id)
-    movies = person.acting_in.order_by('movie.releasedate')
+    movies = person.acting_in.order_by('-movie__releasedate')
     context = {
         'person': person,
         'movies': movies,
